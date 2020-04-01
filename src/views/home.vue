@@ -4,50 +4,68 @@
         <navtop></navtop>
         <!-- 轮播图 -->
         <div class="home_banner">
-            <el-carousel width="100%" height="31.25vw">
+            <el-carousel width="100%" height="41.65vw">
                 <el-carousel-item class="banner" v-for="(item,index) in banners" :key="index">
                     <a href>
                         <img :src="item.pic" alt />
                     </a>
                 </el-carousel-item>
-                <!-- <el-carousel-item class="banner">
-          <a href=""><img src="@/assets/img/banner2.png" alt=""></a>
-                </el-carousel-item>-->
             </el-carousel>
         </div>
-        <!-- 优秀定制师推荐 -->
-        <div class="designer">
-            <div class="title_p _containers">优秀定制师推荐</div>
-            <div class="designer_lunbo _containers">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <!-- <div class="swiper-slide">
-              <div class="listone">
-                <div class="slide_img"><img src="@/assets/img/img1.png" alt=""></div>
-                <div class="slide_title">
-                  <div class="title">飞途旅游小路1</div>
-                  <img src="@/assets/img/man.png" alt="">
-                </div>
-                <div class="slide_con">
-                  <div class="con">爱好旅游的萌妹子、
-                    摄影达人、旅游达人、
-                    自由职业者</div>
-                    <div class="img"><img src="@/assets/img/APPcode.png" alt=""></div>
-                </div>
-              </div>
-                        </div>-->
-                        <div class="swiper-slide" v-for="(item,index) in designerList" :key="index">
-                            <div class="listone">
-                                <img class="designerimg" :src="item.pic" alt />
+        <!-- 中间内容 -->
+        <div class="contop">
+            <!-- 优秀定制师推荐 -->
+            <div class="designer">
+                <div class="title_p _containers">优秀定制师推荐</div>
+                <div class="designer_lunbo _containers">
+                    <div class="swiper-container" id="swipera">
+                        <div class="swiper-wrapper">
+                            <div
+                                class="swiper-slide"
+                                v-for="(item,index) in designerLista"
+                                :key="index"
+                            >
+                                <div class="listone">
+                                    <img class="designerimg" :src="item.pic" alt />
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+            </div>
+            <div class="contop_bottomImg">
+                <img :src="pica" />
             </div>
         </div>
-
+        <!-- 中间内容 -->
+        <div class="contop">
+            <!-- 优秀定制师推荐 -->
+            <div class="designer">
+                <div class="title_p _containers">五大工具</div>
+                <div class="designer_lunbo _containers _containersb">
+                    <div class="swiper-container swiper-containerb" id="swiperb">
+                        <div class="swiper-wrapper swiper-wrapperb">
+                            <div
+                                class="swiper-slide swiper-slideb"
+                                v-for="(item,index) in designerListb"
+                                :key="index"
+                            >
+                                <div class="listone listoneb">
+                                    <img class="designerimg designerimgb" :src="item.pic" alt />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            <div class="contop_bottomImg">
+                <img :src="picb" />
+            </div>
+        </div>
         <!--  -->
         <div class="product">
             <div class="title_p _containers">游米游产品介绍</div>
@@ -88,35 +106,50 @@
 <script>
 import navtop from "@/components/nav/navtop.vue";
 import bottom from "@/components/bottom/bottom.vue";
-import { banner, designers, products } from "@/api/api.js";
+import { banner, designers, product_ads, products } from "@/api/api.js";
 
 export default {
     data() {
         return {
             proList: [],
             banners: [],
-            designerList: [
+            designerLista: [
                 {
-                    pic:
-                        "http://umuweb.dev.zhangxinkeji.com/Upload/admin/2020-03-20/5e741fd6bd804.jpeg"
+                    pic: ""
                 },
                 {
-                    pic:
-                        "http://umuweb.dev.zhangxinkeji.com/Upload/admin/2020-03-20/5e741fd6bd804.jpeg"
+                    pic: ""
                 },
                 {
-                    pic:
-                        "http://umuweb.dev.zhangxinkeji.com/Upload/admin/2020-03-20/5e741fd6bd804.jpeg"
+                    pic: ""
                 },
                 {
-                    pic:
-                        "http://umuweb.dev.zhangxinkeji.com/Upload/admin/2020-03-20/5e741fd6bd804.jpeg"
+                    pic: ""
                 },
                 {
-                    pic:
-                        "http://umuweb.dev.zhangxinkeji.com/Upload/admin/2020-03-20/5e741fd6bd804.jpeg"
+                    pic: ""
                 }
-            ]
+            ],
+            designerListb: [
+                {
+                    pic: ""
+                },
+                {
+                    pic: ""
+                },
+                {
+                    pic: ""
+                },
+                {
+                    pic: ""
+                },
+                {
+                    pic: ""
+                }
+            ],
+            // pica: require("../assets/img/contenttop.png"),
+            pica: "",
+            picb: ""
         };
     },
     components: {
@@ -125,24 +158,13 @@ export default {
     },
     created() {
         this.getBanners();
+        this.getBannersa();
+        this.getBannersb();
         this.getDesigner();
+        this.product_ads();
         this.getProduct();
     },
-    mounted() {
-        new Swiper(".swiper-container", {
-            slidesPerView: 4,
-            loopedSlides: 4,
-            loop: false,
-            autoplay: {
-                delay: 2000,
-                disableOnInteraction: false
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev"
-            }
-        });
-    },
+    mounted() {},
     methods: {
         isPlay(index) {
             let allvideo = this.$refs.video;
@@ -156,17 +178,72 @@ export default {
         },
         //首页轮播图
         getBanners() {
-            banner().then(res => {
+            banner({ type: "1" }).then(res => {
                 if (res.status == 1) {
                     this.banners = res.data;
                 }
             });
         },
+        //首页轮播图
+        getBannersa() {
+            banner({ type: "2" }).then(res => {
+                if (res.status == 1) {
+                    this.pica = res.data[0].pic;
+                }
+            });
+        },
+        //首页轮播图
+        getBannersb() {
+            banner({ type: "3" }).then(res => {
+                if (res.status == 1) {
+                    this.picb = res.data[0].pic;
+                }
+            });
+        },
+
         //定制师列表
         getDesigner() {
             designers().then(res => {
                 if (res.status == 1) {
-                    this.designerList = res.data;
+                    this.designerLista = res.data;
+                    if (res.data.length > 4) {
+                        new Swiper("#swipera", {
+                            slidesPerView: 4,
+                            loopedSlides: 4,
+                            loop: false,
+                            autoplay: {
+                                delay: 2000,
+                                disableOnInteraction: false
+                            },
+                            navigation: {
+                                nextEl: ".swiper-button-next",
+                                prevEl: ".swiper-button-prev"
+                            }
+                        });
+                    }
+                }
+            });
+        },
+        //五大产品
+        product_ads() {
+            product_ads().then(res => {
+                if (res.status == 1) {
+                    this.designerListb = res.data;
+                    if (res.data.length > 4) {
+                        new Swiper("#swiperb", {
+                            slidesPerView: 4,
+                            loopedSlides: 4,
+                            loop: false,
+                            autoplay: {
+                                delay: 2000,
+                                disableOnInteraction: false
+                            },
+                            navigation: {
+                                nextEl: ".swiper-button-next",
+                                prevEl: ".swiper-button-prev"
+                            }
+                        });
+                    }
                 }
             });
         },
@@ -200,22 +277,37 @@ export default {
     width: 100%;
     height: 100%;
 }
+.contop {
+    /* height: 1183px; */
+}
+.contop_bottomImg {
+    width: 100%;
+    height: 25vw;
+    min-width: 1220px;
+    min-height: 325px;
+}
+.contop_bottomImg img {
+    width: 100%;
+    height: 100%;
+}
 .designer {
     width: 100%;
-    height: 620px;
+    /* height: 620px; */
     background: #f8f8f8;
-}
-.product {
+    padding-bottom: 150px;
 }
 .title_p {
-    font-size: 20px;
+    font-size: 36px;
     font-weight: bold;
     color: #28282c;
     text-align: center;
-    padding-top: 50px;
+    padding-top: 105px;
+}
+.product {
+    margin-bottom: 156px;
 }
 .product_con {
-    margin-top: 25px;
+    margin-top: 70px;
 }
 .product_con_Odd {
     display: flex;
@@ -301,17 +393,30 @@ export default {
     outline-style: none;
 }
 .designer_lunbo {
-    margin-top: 30px;
+    margin-top: 70px;
     height: 430px;
     position: relative;
 }
+
 .swiper-container {
     height: 430px;
+    overflow: auto;
+}
+._containersb {
+    height: 337px;
+}
+.swiper-containerb {
+    height: 337px;
     overflow: auto;
 }
 .swiper-wrapper {
     width: 1200px;
     height: 430px;
+    /* margin-left: -20px; */
+}
+.swiper-wrapperb {
+    width: 1200px;
+    height: 337px;
     /* margin-left: -20px; */
 }
 .swiper-container::-webkit-scrollbar {
@@ -338,19 +443,40 @@ export default {
     outline-style: none;
 }
 .swiper-slide {
+    border-radius: 10px;
+    overflow: hidden;
     padding: 0 10px;
     width: 280px !important;
+}
+.swiper-slideb {
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 0 10px;
+    width: 280px !important;
+    height: 337px;
 }
 .swiper-slide .listone {
     width: 280px !important;
     height: 430px;
     background-color: #ffffff;
-    border-radius: 10px;
+    border-radius: 10px !important;
+    overflow: hidden;
     /* margin-right: 23px; */
 }
 .designerimg {
     width: 280px;
     height: 430px;
+}
+.swiper-slide .listoneb {
+    width: 280px !important;
+    height: 337px;
+    background-color: #ffffff;
+    border-radius: 10px !important;
+    overflow: hidden;
+}
+.designerimgb {
+    width: 280px;
+    height: 337px;
 }
 .slide_img {
     width: 280px;
