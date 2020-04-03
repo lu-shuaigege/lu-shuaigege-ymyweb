@@ -16,7 +16,7 @@
         <div class="contop">
             <!-- 优秀定制师推荐 -->
             <div class="designer">
-                <div class="title_p _containers">优秀定制师推荐</div>
+                <div class="title_p _containers">优秀主播推荐</div>
                 <div class="designer_lunbo _containers">
                     <div class="swiper-container" id="swipera">
                         <div class="swiper-wrapper">
@@ -43,7 +43,7 @@
         <div class="contop">
             <!-- 优秀定制师推荐 -->
             <div class="designer">
-                <div class="title_p _containers">五大工具</div>
+                <div class="title_p _containers">五大品类</div>
                 <div class="designer_lunbo _containers _containersb">
                     <div class="swiper-container swiper-containerb" id="swiperb">
                         <div class="swiper-wrapper swiper-wrapperb">
@@ -298,7 +298,7 @@ export default {
 }
 .title_p {
     font-size: 36px;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: #28282c;
     text-align: center;
     padding-top: 105px;

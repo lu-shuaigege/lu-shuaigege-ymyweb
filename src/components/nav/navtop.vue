@@ -86,7 +86,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 22px;
+    font-size: 20px;
     color: #999999;
     cursor: pointer;
     margin-right: 66px;
@@ -99,12 +99,12 @@ export default {
     }
     .selected {
         // height: 36px;
-        color: #ff8737;
+        color: #999999;
         border-bottom: 2px solid #ff8737;
     }
 }
 .navtop_con_c div:hover {
-    color: #ff8737;
+    color: #999999;
 }
 .navtop_con_r {
     display: flex;
