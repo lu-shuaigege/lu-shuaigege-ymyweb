@@ -10,7 +10,7 @@
                 </div>
                 <div class="navtop_con_r">
                     <div class="one" @click="toUrl()">供应商平台</div>
-                    <div class="two">优才学院</div>
+                    <div class="two" @click="toUrlyoucai()">优才学院</div>
                 </div>
             </div>
         </div>
@@ -50,6 +50,9 @@ export default {
         },
         toUrl() {
             window.open("http://admin.umu888.com/agency/auth/login");
+        },
+        toUrlyoucai() {
+            window.open("http://www.xiaoyaolexue.com/");
         }
     }
 };
